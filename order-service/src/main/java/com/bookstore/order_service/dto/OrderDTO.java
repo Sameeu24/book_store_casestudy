@@ -12,6 +12,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+//TODO : Validation
 public class OrderDTO {
     private long orderId;
     private long customerId;

@@ -8,10 +8,9 @@ import com.bookstore.order_service.feignclients.BookServiceClient;
 import com.bookstore.order_service.orderrepository.OrderRepository;
 import com.bookstore.order_service.service.OrderService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("api/v1/order")
@@ -32,5 +31,11 @@ public class BookController {
 //        Book book=new Book();
         return ResponseEntity.ok(OrderDTO.convertToDto(order,bookServiceClient ));
 
+    }
+
+    @GetMapping("")
+    public ResponseEntity<List<Order>> getAllOrders(){
+        var response=orderService.getAllOrders();
+        return ResponseEntity.ok(response);
     }
 }

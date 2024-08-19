@@ -29,7 +29,8 @@ public class OrderService {
         //convert to DTO
         Book book=bookServiceClient.findBookById(order.getBookId());
         if (book.stock()<order.getQuantity()){
-            throw  new RuntimeException("Insufficient Stocks");
+          order.setStatus("INSUFFICIENT STOCKS");
+          return orderRepository.save(order);
         }
         order.setStatus("CONFIRMED");
         return  orderRepository.save(order);

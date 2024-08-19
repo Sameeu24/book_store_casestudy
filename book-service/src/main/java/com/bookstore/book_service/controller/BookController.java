@@ -5,6 +5,7 @@ import com.bookstore.book_service.convertor.BookDTOConvertor;
 import com.bookstore.book_service.domain.Book;
 import com.bookstore.book_service.dto.BookDTO;
 import com.bookstore.book_service.service.BookService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -27,7 +28,7 @@ public class BookController {
 
     //Create a book
     @PostMapping
-    public ResponseEntity<BookDTO> createPatient( @RequestBody BookDTO dto) {
+    public ResponseEntity<BookDTO> createPatient(@Valid @RequestBody BookDTO dto) {
         // TODO handle DuplicatePatientException
         // Create a new patient
         Book book = convertor.toEntity(dto);
@@ -47,7 +48,7 @@ public class BookController {
 
     //GET book by id
     @GetMapping("/{id}")
-    public ResponseEntity<BookDTO> findBookById(@PathVariable  long id){
+    public ResponseEntity<BookDTO> findBookById(@Valid @PathVariable  long id){
         Book book=bookService.getBookById(id);
         var response=convertor.bookDTO(book);
         return ResponseEntity.ok(response);
@@ -63,7 +64,7 @@ public class BookController {
 //    }
 
     @DeleteMapping("/{id}")
-    public  void deleteBookById(@PathVariable long id){
+    public  void deleteBookById(@Valid @PathVariable long id){
         Book book=bookService.getBookById(id);
      bookService.deleteBook(id);
 
