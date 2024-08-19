@@ -31,12 +31,13 @@ public class CustomerService {
     }
 
     //Update Customer
-    public Customer updateCustomer(Customer customer){
-        Customer customerUpdate=customerRepository.findById(customer.getId()).orElseThrow(()->new RuntimeException("Book not found"));
-        customerUpdate.setName(customer.getName());
-        customerUpdate.setEmail(customer.getEmail());
-        customerUpdate.setPhoneNumber(customer.getPhoneNumber());
-        return customerRepository.save(customer);
+    public Customer updateCustomer(long id,Customer customer){
+       Customer customer1=customerRepository.findById(id).orElseThrow(()->new RuntimeException("Customer not found"));
+       customer1.setName(customer.getName());
+       customer1.setEmail(customer.getEmail());
+       customer1.setPhoneNumber(customer.getPhoneNumber());
+       customerRepository.save(customer1);
+       return customer1;
     }
 
     //Delete Customer

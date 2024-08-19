@@ -19,7 +19,7 @@ public record CustomerDTO(
 
         @NotNull(message = "Phone number cannot be null")
         @NotEmpty(message = "Phone number cannot be empty")
-        @Pattern(regexp = "((\\+*)((0[ -]*)*|((91 )*))((\\d{12})+|(\\d{10})+))|\\d{5}([- ]*)\\d{6}", message = "Phone number should be valid and can include country code")
+//        @Pattern(regexp = "((\\+*)((0[ -]*)*|((91 )*))((\\d{12})+|(\\d{10})+))|\\d{5}([- ]*)\\d{6}", message = "Phone number should be valid and can include country code")
         String phoneNumber
 ) {
 

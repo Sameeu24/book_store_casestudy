@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.awt.print.Book;
 import java.util.List;
 
 @RestController
@@ -53,13 +54,13 @@ public class CustomerController {
 
     }
 
-    //UPDATE By ID method
-//    @PutMapping("/{id}")
-//    public ResponseEntity<Book> updateBookById(@PathVariable long id,@RequestBody BookDTO book){
-//        Book updateBook=convertor.toEntity(book);
-//        var responseBody=bookService.updateBook(updateBook);
-//        return ResponseEntity.ok(responseBody);
-//    }
+//    UPDATE By ID method
+    @PutMapping("/{id}")
+    public ResponseEntity<Customer> updateBookById(@PathVariable long id, @RequestBody CustomerDTO customer){
+        Customer updatecustomer=convertor.toEntity(customer);
+        var responseBody=customerService.updateCustomer(id,updatecustomer);
+        return ResponseEntity.ok(responseBody);
+    }
 
     @DeleteMapping("/{id}")
     public  void deleteCustomerById(@Valid @PathVariable long id){
