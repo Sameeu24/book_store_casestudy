@@ -7,6 +7,7 @@ import com.bookstore.order_service.dto.OrderDTO;
 import com.bookstore.order_service.feignclients.BookServiceClient;
 import com.bookstore.order_service.orderrepository.OrderRepository;
 import lombok.Setter;
+import org.aspectj.weaver.ast.Or;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -40,6 +41,16 @@ public class OrderService {
     //GET ALL ORDERS
     public List<Order> getAllOrders(){
         return orderRepository.findAll();
+    }
+
+    //Update Order
+    public Order updateCustomer(long id,Order order){
+        Order order1=orderRepository.findById(id).orElseThrow(()->new RuntimeException("Customer not found"));
+        order1.setCustomerId(order.getCustomerId());
+        order1.setBookId(order.getBookId());
+//        order1.setQuantity(order.setQuantity());
+        orderRepository.save(order1);
+        return order1;
     }
 
 
