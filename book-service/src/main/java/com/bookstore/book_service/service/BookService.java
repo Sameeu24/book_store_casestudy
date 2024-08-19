@@ -33,14 +33,15 @@ public class BookService {
         return bookRepository.save(book);
     }
 
-    //Update book
-    public Book updateBook(Book book){
-        Book bookUpdate=bookRepository.findById(book.getBookId()).orElseThrow(()->new RuntimeException("Book not found"));
-        bookUpdate.setBookName(book.getBookName());
-        bookUpdate.setAuthor(book.getAuthor());
-        bookUpdate.setPrice(book.getPrice());
-        bookUpdate.setStock(book.getStock());
-        return bookRepository.save(book);
+    //Update Book
+    public Book updateBook(long id,Book book){
+        Book book1=bookRepository.findById(id).orElseThrow(()->new RuntimeException("Book not found"));
+        book1.setBookName(book.getBookName());
+        book1.setAuthor(book.getAuthor());
+        book1.setPrice(book.getPrice());
+        book1.setStock(book.getStock());
+        bookRepository.save(book1);
+        return book1;
     }
 
     //Delete Book

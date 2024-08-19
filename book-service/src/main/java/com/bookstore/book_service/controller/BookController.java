@@ -55,13 +55,13 @@ public class BookController {
 
     }
 
-    //UPDATE By ID method
-//    @PutMapping("/{id}")
-//    public ResponseEntity<Book> updateBookById(@PathVariable long id,@RequestBody BookDTO book){
-//        Book updateBook=convertor.toEntity(book);
-//        var responseBody=bookService.updateBook(updateBook);
-//        return ResponseEntity.ok(responseBody);
-//    }
+//    UPDATE By ID method
+    @PutMapping("/{id}")
+    public ResponseEntity<Book> updateBookById(@PathVariable long id,@RequestBody BookDTO book){
+        Book updateBook=convertor.toEntity(book);
+        var responseBody=bookService.updateBook(id,updateBook);
+        return ResponseEntity.ok(responseBody);
+    }
 
     @DeleteMapping("/{id}")
     public  void deleteBookById(@Valid @PathVariable long id){
