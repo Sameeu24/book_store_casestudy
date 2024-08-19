@@ -3,6 +3,7 @@ package com.bookstore.book_service.dto;
 import jakarta.validation.constraints.*;
 
 public record BookDTO (
+
         long id,
 
 
