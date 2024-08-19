@@ -3,6 +3,7 @@ import com.bookstore.customer_service.convertor.CustomerDTOConvertor;
 import com.bookstore.customer_service.domain.Customer;
 import com.bookstore.customer_service.dto.CustomerDTO;
 import com.bookstore.customer_service.service.CustomerService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,7 +26,7 @@ public class CustomerController {
 
     //Create a Customer
     @PostMapping
-    public ResponseEntity<CustomerDTO> createCustomer(@RequestBody CustomerDTO dto) {
+    public ResponseEntity<CustomerDTO> createCustomer(@Valid @RequestBody CustomerDTO dto) {
         // TODO handle DuplicatePatientException
         // Create a new patient
         Customer customer = convertor.toEntity(dto);
@@ -45,7 +46,7 @@ public class CustomerController {
 
     //GET Customer by id
     @GetMapping("/{id}")
-    public ResponseEntity<CustomerDTO> findCustomerById(@PathVariable  long id){
+    public ResponseEntity<CustomerDTO> findCustomerById(@Valid @PathVariable  long id){
         Customer customer=customerService.getCustomerById(id);
         var response=convertor.customerDTO(customer);
         return ResponseEntity.ok(response);
@@ -61,7 +62,7 @@ public class CustomerController {
 //    }
 
     @DeleteMapping("/{id}")
-    public  void deleteCustomerById(@PathVariable long id){
+    public  void deleteCustomerById(@Valid @PathVariable long id){
         Customer customer=customerService.getCustomerById(id);
      customerService.deleteCustomer(id);
 
