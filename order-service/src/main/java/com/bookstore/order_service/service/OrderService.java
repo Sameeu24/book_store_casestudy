@@ -48,7 +48,7 @@ public class OrderService {
         Order order1=orderRepository.findById(id).orElseThrow(()->new RuntimeException("Customer not found"));
         order1.setCustomerId(order.getCustomerId());
         order1.setBookId(order.getBookId());
-//        order1.setQuantity(order.setQuantity());
+        order1.setQuantity(order.getQuantity());
         orderRepository.save(order1);
         return order1;
     }
