@@ -7,6 +7,7 @@ import com.bookstore.order_service.dto.OrderDTO;
 import com.bookstore.order_service.feignclients.BookServiceClient;
 import com.bookstore.order_service.orderrepository.OrderRepository;
 import com.bookstore.order_service.service.OrderService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,7 +27,7 @@ public class BookController {
 
     @PostMapping("")
 
-    public ResponseEntity<OrderDTO> createOrder(@RequestBody Order order){
+    public ResponseEntity<OrderDTO> createOrder(@Valid @RequestBody Order order){
         var response=orderService.createOrder(order);
 //        Book book=new Book();
         return ResponseEntity.ok(OrderDTO.convertToDto(order,bookServiceClient ));
